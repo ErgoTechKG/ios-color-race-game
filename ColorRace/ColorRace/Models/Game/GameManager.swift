@@ -106,6 +106,7 @@ extension GameManager {
     
     private func setupBoard() {
         generateRandomBoardColors()
+        opponentColors = GameColors.defaultColors()
     }
     
     private func generateRandomBoardColors() {
