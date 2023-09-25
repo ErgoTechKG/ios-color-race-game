@@ -10,17 +10,30 @@ import SwiftUI
 import Combine
 import SocketIO
 
-// TODO: disconnect user on backgrounding the app
 final class GameManager: ObservableObject {
     /// Game management
     @Published private(set) var gameState: GameState
-    private var cancellable: Set<AnyCancellable>
+    private var cancellable: AnyCancellable?
     @Published private(set) var secondsToNextRound: Int = 3
     private var timer = Timer()
 
     /// Game events
-    @Published var userHasWonGame: Bool = false
-    @Published var userSelectedTile = TileSelection(row: 0, col: 0, color: .white)
+    @Published var userWon: Bool = false {
+        didSet {
+            print("gm didSet: userWon: \(userWon)")
+            if userWon {
+                DispatchQueue.main.async { [weak self] in
+                    self?.userWonGame()
+                }
+            }
+        }
+    }
+    @Published var userSelectedTile = TileSelection(row: 0, col: 0, color: .white) {
+        didSet {
+            print("gm didSet: userSelectedTile: \(userSelectedTile)")
+            self.sendUserSelectionOnConnection()
+        }
+    }
 
     /// SocketManager
     private var socketManager: SocketManager?
@@ -31,7 +44,7 @@ final class GameManager: ObservableObject {
     @Published private var socketState = SocketState.disconnected
     
     /// Game board
-    private let boardTileColors: [UIColor] = GameColors.paletteColors()
+    private let boardTileColors: [UIColor] = GameColors.colorPalette()
     var boardColors: [[UIColor]] = []
     @Published var opponentColors: [[UIColor]] = GameColors.defaultColors()
     
@@ -39,21 +52,15 @@ final class GameManager: ObservableObject {
         self.socketManager = SocketManager(socketURL: socketURL, config: [.log(loggingEnabled), .compress])
         self.socket = socketManager?.defaultSocket
         self.gameState = .disconnected(text: GameStrings.joinGame)
-        self.cancellable = Set<AnyCancellable>()
-        $socketState.sink { [weak self] socketState in
+        self.cancellable = $socketState.sink { [weak self] socketState in
             print("gm: received socket event: \(socketState)")
             self?.updateGameState(forSocketState: socketState)
-        }.store(in: &cancellable)
-        $userSelectedTile.sink { [weak self] tileSelection in
-            print("gm: userSelectedTile: \(tileSelection)")
-        }.store(in: &cancellable)
-        $userHasWonGame.sink { [weak self] userWon in
-            print("gm: userHasWonGame: \(userWon)")
-        }.store(in: &cancellable)
+        }
     }
 
     deinit {
-        cancellable.removeAll()
+        cancellable?.cancel()
+        cancellable = nil
         socketManager = nil
         socket = nil
     }
@@ -74,18 +81,14 @@ extension GameManager {
         gameState = .playing
     }
     
-    func userWonGame() {
+    private func userWonGame() {
         gameState = .userWon
         userWonOnConnection()
         startNextRoundTimer()
     }
     
-    func userLostGame() {
+    private func userLostGame() {
         startNextRoundTimer()
-    }
-    
-    func userSelection(_ selection: TileSelection) {
-        sendUserSelectionOnConnection(selection)
     }
     
     private func startNextRoundTimer() {
@@ -109,6 +112,7 @@ extension GameManager {
     }
     
     private func loadNextRound() {
+        userWon = false
         setupBoard()
         gameState = .preparingGame(text: GameStrings.opponentFound)
     }
@@ -154,6 +158,7 @@ extension GameManager {
     }
 }
 
+// MARK: Socket event listeners
 extension GameManager {
     
     private func addEventListeners() {
@@ -244,6 +249,10 @@ extension GameManager {
             }
         }
     }
+}
+
+// MARK: Socket user actions
+extension GameManager {
     
     private func establishConnection() {
         socketState = .connectingToServer
@@ -269,16 +278,16 @@ extension GameManager {
         socket?.emit(SocketEvents.userWon, namespace)
     }
     
-    private func sendUserSelectionOnConnection(_ selection: TileSelection) {
+    private func sendUserSelectionOnConnection() {
         guard let namespace = namespace else {
             socket?.disconnect()
             return
         }
-        guard let colorAsHex = selection.color.toHex() else {
+        guard let colorAsHex = self.userSelectedTile.color.toHex() else {
             return
         }
 
-        let data = ["color": colorAsHex, "row": selection.row, "col": selection.col, "namespace": namespace] as [String : Any]
+        let data = ["color": colorAsHex, "row": self.userSelectedTile.row, "col": self.userSelectedTile.col, "namespace": namespace] as [String : Any]
         socket?.emit(SocketEvents.userSelection, data)
     }
 }

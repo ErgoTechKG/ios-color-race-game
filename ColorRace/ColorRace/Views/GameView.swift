@@ -8,6 +8,7 @@
 import Foundation
 import SwiftUI
 
+// TODO: disconnect user on backgrounding the app
 struct GameView: View {
     @Environment(\.presentationMode) var presentation
     @StateObject private var gameManager = GameManager()
@@ -15,9 +16,7 @@ struct GameView: View {
     @State private var hudOpacity: Double = 0
     @State private var showGameBoard = false
     @State private var showMiniCard = false
-    @State private var userWon: Bool = false
     @State private var faceCardOpacity = 1.0
-    @State private var tileSelection = TileSelection(row: 0, col: 0, color: .white)
     @Namespace private var miniCardAnimation
     private let hudViewHeight = 75.0
     private let hudVerticalPadding = 20.0
@@ -40,7 +39,7 @@ struct GameView: View {
         .navigationBarBackButtonHidden()
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
-                navigationCloseButton()
+                navigationBackButton()
             }
         }
         .foregroundColor(GameUx.brandColor())
@@ -49,7 +48,7 @@ struct GameView: View {
         }
     }
     
-    @ViewBuilder private func navigationCloseButton() -> some View {
+    @ViewBuilder private func navigationBackButton() -> some View {
         Button {
             self.presentation.wrappedValue.dismiss()
         } label: {
@@ -191,25 +190,16 @@ extension GameView {
     }
     
     @ViewBuilder private func boardRepresentableView() -> some View {
-        BoardViewRepresentable(userWon: $gameManager.userHasWonGame, tileSelection: $gameManager.userSelectedTile, boardColors: $gameManager.boardColors)
+        BoardViewRepresentable(userWon: $gameManager.userWon, userSelectedTile: $gameManager.userSelectedTile, boardColors: $gameManager.boardColors)
             .offset(y: showGameBoard ? 0 : UIScreen.main.bounds.size.height)
             .transition(.slide)
             .animation(.spring(dampingFraction: 0.6), value: showGameBoard)
             .clipped()
-            .onChange(of: gameManager.userHasWonGame) { newValue in
-                print("boardRepresentableView \(newValue)")
-                gameManager.userWonGame()
-            }
-            .onChange(of: gameManager.userSelectedTile) { newValue in
-                print("boardRepresentableView selection [\(newValue.row)][\(newValue.col)], color: \(newValue.color)")
-                gameManager.userSelection(TileSelection(row: newValue.row, col: newValue.col, color: newValue.color))
-            }
             .onAppear {
                 showGameBoard = true
             }
             .onDisappear {
                 showGameBoard = false
-                userWon = false
             }
     }
 }

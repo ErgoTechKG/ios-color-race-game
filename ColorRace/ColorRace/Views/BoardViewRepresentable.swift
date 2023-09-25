@@ -12,7 +12,7 @@ import SwiftUI
 struct BoardViewRepresentable: UIViewRepresentable {
     typealias UIViewType = BoardView
     @Binding var userWon: Bool
-    @Binding var tileSelection: TileSelection
+    @Binding var userSelectedTile: TileSelection
     @Binding var boardColors: [[UIColor]]
     
     func makeUIView(context: Context) -> BoardView {
@@ -42,7 +42,7 @@ struct BoardViewRepresentable: UIViewRepresentable {
         }
         
         func userTappedTile(row: Int, col: Int, color: UIColor) {
-            self.parent.tileSelection = TileSelection(row: row, col: col, color: color)
+            self.parent.userSelectedTile = TileSelection(row: row, col: col, color: color)
         }
     }
 }

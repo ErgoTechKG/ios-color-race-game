@@ -34,7 +34,7 @@ struct GameColors {
         UIColor.white
     }
     
-    static func paletteColors() -> [UIColor] {
+    static func colorPalette() -> [UIColor] {
         [
             GameColors.white(), GameColors.blue(), GameColors.orange(), GameColors.yellow(), GameColors.green(), GameColors.red()
         ]

@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-struct TileSelection: Equatable {
+struct TileSelection {
     var row: Int
     var col: Int
     var color: UIColor
