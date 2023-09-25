@@ -191,16 +191,16 @@ extension GameView {
     }
     
     @ViewBuilder private func boardRepresentableView() -> some View {
-        BoardViewRepresentable(userWon: $userWon, tileSelection: $tileSelection, boardColors: $gameManager.boardColors)
+        BoardViewRepresentable(userWon: $gameManager.userHasWonGame, tileSelection: $gameManager.userSelectedTile, boardColors: $gameManager.boardColors)
             .offset(y: showGameBoard ? 0 : UIScreen.main.bounds.size.height)
             .transition(.slide)
             .animation(.spring(dampingFraction: 0.6), value: showGameBoard)
             .clipped()
-            .onChange(of: userWon) { newValue in
+            .onChange(of: gameManager.userHasWonGame) { newValue in
                 print("boardRepresentableView \(newValue)")
                 gameManager.userWonGame()
             }
-            .onChange(of: tileSelection) { newValue in
+            .onChange(of: gameManager.userSelectedTile) { newValue in
                 print("boardRepresentableView selection [\(newValue.row)][\(newValue.col)], color: \(newValue.color)")
                 gameManager.userSelection(TileSelection(row: newValue.row, col: newValue.col, color: newValue.color))
             }

@@ -14,10 +14,14 @@ import SocketIO
 final class GameManager: ObservableObject {
     /// Game management
     @Published private(set) var gameState: GameState
-    private var cancellable: AnyCancellable?
+    private var cancellable: Set<AnyCancellable>
     @Published private(set) var secondsToNextRound: Int = 3
-    var timer = Timer()
-    
+    private var timer = Timer()
+
+    /// Game events
+    @Published var userHasWonGame: Bool = false
+    @Published var userSelectedTile = TileSelection(row: 0, col: 0, color: .white)
+
     /// SocketManager
     private var socketManager: SocketManager?
     private var socket: SocketIOClient?
@@ -35,16 +39,21 @@ final class GameManager: ObservableObject {
         self.socketManager = SocketManager(socketURL: socketURL, config: [.log(loggingEnabled), .compress])
         self.socket = socketManager?.defaultSocket
         self.gameState = .disconnected(text: GameStrings.joinGame)
-        self.cancellable = $socketState
-            .sink { [weak self] socketState in
-                print("gm: received socket event: \(socketState)")
-                self?.updateGameState(forSocketState: socketState)
-            }
+        self.cancellable = Set<AnyCancellable>()
+        $socketState.sink { [weak self] socketState in
+            print("gm: received socket event: \(socketState)")
+            self?.updateGameState(forSocketState: socketState)
+        }.store(in: &cancellable)
+        $userSelectedTile.sink { [weak self] tileSelection in
+            print("gm: userSelectedTile: \(tileSelection)")
+        }.store(in: &cancellable)
+        $userHasWonGame.sink { [weak self] userWon in
+            print("gm: userHasWonGame: \(userWon)")
+        }.store(in: &cancellable)
     }
-    
+
     deinit {
-        cancellable?.cancel()
-        cancellable = nil
+        cancellable.removeAll()
         socketManager = nil
         socket = nil
     }
