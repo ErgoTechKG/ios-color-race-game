@@ -50,7 +50,8 @@ final class GameManager: ObservableObject {
         self.socketManager = SocketManager(socketURL: socketURL, config: [.log(loggingEnabled), .compress])
         self.socket = socketManager?.defaultSocket
         self.gameState = .disconnected(text: GameStrings.joinGame)
-        self.cancellable = $socketState.sink { [weak self] socketState in
+        self.cancellable = $socketState.receive(on: DispatchQueue.main)
+            .sink { [weak self] socketState in
             print("gm: received socket event: \(socketState)")
             self?.updateGameState(forSocketState: socketState)
         }
