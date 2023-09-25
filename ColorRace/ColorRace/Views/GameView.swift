@@ -11,6 +11,7 @@ import SwiftUI
 // TODO: disconnect user on backgrounding the app
 struct GameView: View {
     @Environment(\.presentationMode) var presentation
+    @Environment(\.scenePhase) var scenePhase
     @StateObject private var gameManager = GameManager()
     @StateObject private var cardFlipAnimator = CardFlipAnimator()
     @State private var hudOpacity: Double = 0
@@ -45,6 +46,11 @@ struct GameView: View {
         .foregroundColor(GameUx.brandColor())
         .onDisappear {
             gameManager.quitGame()
+        }
+        .onChange(of: scenePhase) { newValue in
+            if newValue != .active {
+                gameManager.quitGame()
+            }
         }
     }
     
