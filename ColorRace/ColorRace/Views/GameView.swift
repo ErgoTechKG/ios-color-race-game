@@ -8,12 +8,6 @@
 import Foundation
 import SwiftUI
 
-struct TileSelection: Equatable {
-    var row: Int
-    var col: Int
-    var color: UIColor
-}
-
 struct GameView: View {
     @Environment(\.presentationMode) var presentation
     @StateObject private var gameManager = GameManager()
