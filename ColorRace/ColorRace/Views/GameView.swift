@@ -16,8 +16,8 @@ struct TileSelection: Equatable {
 
 struct GameView: View {
     @Environment(\.presentationMode) var presentation
-    @ObservedObject private var gameManager = GameManager()
-    @ObservedObject private var cardFlipAnimator = CardFlipAnimator()
+    @StateObject private var gameManager = GameManager()
+    @StateObject private var cardFlipAnimator = CardFlipAnimator()
     @State private var hudOpacity: Double = 0
     @State private var showGameBoard = false
     @State private var showMiniCard = false
@@ -29,7 +29,8 @@ struct GameView: View {
     private let hudVerticalPadding = 20.0
     
     init() {
-        UINavigationBar.appearance().titleTextAttributes = [.font : GameUx.navigationFont(), .foregroundColor: GameUx.brandUIColor()]
+        UINavigationBar.appearance().titleTextAttributes = [.font : GameUx.navigationFont(),
+                                                            .foregroundColor: GameUx.brandUIColor()]
     }
     
     var body: some View {
@@ -95,7 +96,6 @@ struct GameView: View {
             }
         }
         .fixedSize()
-        .border(.red)
     }
     
     @ViewBuilder private func connectedView(_ text: String) -> some View {
@@ -111,7 +111,6 @@ struct GameView: View {
                 .opacity(faceCardOpacity)
             }.position(x: proxy.frame(in: .local).midX,
                        y: proxy.frame(in: .local).midY - hudViewHeight/2 - hudVerticalPadding)
-            .border(.green)
         }
         .onAppear {
             cardFlipAnimator.setDefaults()
@@ -140,7 +139,6 @@ struct GameView: View {
                          cardBack: CardStore.mediumCardBack,
                          degree: $cardFlipAnimator.backDegree)
         }
-        .border(.black)
         .frame(width: CardStore.mediumCardLayout.width, height: CardStore.mediumCardLayout.height)
         .fixedSize()
     }
@@ -170,7 +168,6 @@ struct GameView: View {
                     .multilineTextAlignment(.center)
             }.position(x: proxy.frame(in: .local).midX,
                        y: proxy.frame(in: .local).midY)
-            .border(.green)
         }
     }
     
@@ -197,7 +194,6 @@ extension GameView {
         animatingHUDView(showDefault: false)
             .padding(.horizontal, 20)
         boardRepresentableView()
-            .border(.red)
     }
     
     @ViewBuilder private func boardRepresentableView() -> some View {
@@ -237,6 +233,7 @@ extension GameView {
         .padding(.vertical, hudVerticalPadding)
         .background(.ultraThinMaterial)
         .cornerRadius(30)
+        .fixedSize(horizontal: false, vertical: true)
     }
     
     @ViewBuilder private func player1HUDView(showDefault: Bool) -> some View {
