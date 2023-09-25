@@ -64,7 +64,6 @@ extension BoardView: BoardTileViewDelegate {
 
         let row = index / tilesPerRow
         let col = index % tilesPerRow
-        print("selected tile [\(row)][\(col)]")
         self.delegate?.userTappedTile(row: row, col: col, color: color)
         
         if boardColors[row][col] == color {

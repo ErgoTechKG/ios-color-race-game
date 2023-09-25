@@ -20,7 +20,6 @@ final class GameManager: ObservableObject {
     /// Game events
     @Published var userWon: Bool = false {
         didSet {
-            print("gm didSet: userWon: \(userWon)")
             if userWon {
                 DispatchQueue.main.async { [weak self] in
                     self?.userWonGame()
@@ -30,7 +29,6 @@ final class GameManager: ObservableObject {
     }
     @Published var userSelectedTile = TileSelection(row: 0, col: 0, color: .white) {
         didSet {
-            print("gm didSet: userSelectedTile: \(userSelectedTile)")
             self.sendUserSelectionOnConnection()
         }
     }
@@ -128,7 +126,6 @@ extension GameManager {
                 return boardTileColors.randomElement() ?? .white
             }
         }
-        print(boardColors)
     }
     
     private func updateGameState(forSocketState socketState: SocketState) {

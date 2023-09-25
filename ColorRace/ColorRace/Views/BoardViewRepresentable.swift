@@ -22,9 +22,7 @@ struct BoardViewRepresentable: UIViewRepresentable {
         return boardView
     }
 
-    func updateUIView(_ uiView: BoardView, context: Context) {
-        print("updateUIView: \(userWon)")
-    }
+    func updateUIView(_ uiView: BoardView, context: Context) {}
 
     func makeCoordinator() -> BoardViewCoordinator {
         BoardViewCoordinator(self)
