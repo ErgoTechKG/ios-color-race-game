@@ -7,17 +7,6 @@
 
 import SwiftUI
 
-// TODO: Calculate correct rotation degrees for varying number of cards
-extension Animation {
-    func `repeat`(while expression: Bool, autoreverses: Bool = true) -> Animation {
-        if expression {
-            return self.repeatForever(autoreverses: autoreverses)
-        } else {
-            return self
-        }
-    }
-}
-
 struct CardLoadingView: View {
     @State var cards: [AnyView]
     @State var animate = false
@@ -26,9 +15,8 @@ struct CardLoadingView: View {
         ZStack {
             ForEach(0..<cards.count, id: \.self) { index in
                 cards[index]
-                    .offset(x: animate ? CGFloat(index - midIndex()) * 10 : 0)
-                    .rotationEffect(.degrees(animate ? Double(index - midIndex()) * 10 : 0), anchor: .bottom)
-                    .animation(Animation.easeInOut(duration: 1).delay(0.25).repeat(while: animate), value: animate)
+                    .offset(x: animate ? CGFloat(index - cards.count / 2) * 10 : 0)
+                    .rotationEffect(.degrees(animate ? rotationForCardAtIndex(index) : 0), anchor: .bottom)
             }
         }
         .onAppear() {
@@ -36,31 +24,50 @@ struct CardLoadingView: View {
         }
     }
     
+    private func offsetForCardAtIndex(_ index: Int) -> CGFloat {
+        let angle: CGFloat
+        if cards.count.isMultiple(of: 2) {
+            angle = (CGFloat(index) - (CGFloat(cards.count) / 2.0) + 0.5) * 10
+        } else {
+            angle = CGFloat(index - cards.count / 2) * 10
+        }
+        return animate ? angle : 0
+    }
+
+    private func rotationForCardAtIndex(_ index: Int) -> CGFloat {
+        offsetForCardAtIndex(index)
+    }
+    
     func startAnimation() {
         withAnimation(Animation.linear(duration: 0.75).delay(0.25).repeatForever(autoreverses: true)) {
             animate.toggle()
         }
     }
-    
-    private func midIndex() -> Int {
-        return cards.count / 2
-    }
 }
 
 struct CardContainerView_Previews: PreviewProvider {
     static var previews: some View {
-        let standardCardLayout = CardLayout(width: 200, height: 330, color: .white, cornerRadius: 15, borderWidth: 2, borderColor: .black)
-        let standardCardFace = CardFace(letter: "10", suit: "♣️", fontSize: 20, colors: CardStore.defaultBoardColors)
-        let standardCardBack = CardBack(text: "CR", font: GameUx.titleFont(), textColor: .black, innerCornerRadius: 15, innerBorderColor: .black, innerBorderWidth: 2)
-        let cardFaceView = CardView(cardDesign: CardDesign(layout: standardCardLayout, renderer: .face(drawable: standardCardFace)))
-        let cardBackView = CardView(cardDesign: CardDesign(layout: standardCardLayout, renderer: .back(drawable: standardCardBack)))
-        let cards = [
-            AnyView(cardFaceView),
-            AnyView(cardBackView),
-            AnyView(cardBackView),
-            AnyView(cardBackView),
-            AnyView(cardBackView)
-        ]
+        let card = RoundedRectangle(cornerRadius: 15)
+            .strokeBorder(.black, lineWidth: 2)
+            .background(
+                RoundedRectangle(cornerRadius: 15).fill(.white)
+            )
+            .frame(width: 100, height: 180)
+            .overlay(
+                RoundedRectangle(cornerRadius: 15)
+                    .strokeBorder(.black, lineWidth: 2)
+                    .background(RoundedRectangle(cornerRadius: 15).fill(Color.clear))
+                    .padding(10)
+            )
+            .overlay(
+                Image(systemName: "suit.spade.fill")
+                    .resizable()
+                    .frame(width: 60, height: 60)
+                    .foregroundColor(.black)
+                    .padding(15)
+            )
+        
+        let cards = Array(repeating: AnyView(card), count: 5)
         CardLoadingView(cards: cards)
     }
 }
