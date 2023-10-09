@@ -15,8 +15,8 @@ struct CardLoadingView: View {
         ZStack {
             ForEach(0..<cards.count, id: \.self) { index in
                 cards[index]
-                    .offset(x: animate ? offsetForCardAtIndex(index) : 0)
-                    .rotationEffect(.degrees(animate ? rotationForCardAtIndex(index) : 0), anchor: .bottom)
+                    .offset(x: offsetForCardAtIndex(index))
+                    .rotationEffect(.degrees(rotationForCardAtIndex(index)), anchor: .bottom)
             }
         }
         .onAppear() {
@@ -25,13 +25,13 @@ struct CardLoadingView: View {
     }
     
     private func offsetForCardAtIndex(_ index: Int) -> CGFloat {
-        let angle: CGFloat
+        let offset: CGFloat
         if cards.count.isMultiple(of: 2) {
-            angle = (CGFloat(index) - (CGFloat(cards.count) / 2.0) + 0.5) * 10
+            offset = (CGFloat(index) - (CGFloat(cards.count) / 2.0) + 0.5) * 10
         } else {
-            angle = CGFloat(index - cards.count / 2) * 10
+            offset = CGFloat(index - cards.count / 2) * 10
         }
-        return animate ? angle : 0
+        return animate ? offset : 0
     }
 
     private func rotationForCardAtIndex(_ index: Int) -> CGFloat {
