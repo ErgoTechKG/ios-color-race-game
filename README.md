@@ -32,5 +32,9 @@ Gameplay video
 ---
 https://youtu.be/mnZZQEpkvQE
 
+---
+TODO
+---
+- [ ] Detect socket server disconnection/kill.
 
 
