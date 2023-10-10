@@ -13,8 +13,8 @@ import SocketIO
 final class GameManager: ObservableObject {
     /// Game management
     @Published private(set) var gameState: GameState
-    private var cancellable: AnyCancellable?
     @Published private(set) var secondsToNextRound: Int = 3
+    private var cancellable: AnyCancellable?
     private var timer = Timer()
 
     /// Game events
@@ -137,6 +137,7 @@ extension GameManager {
             gameState = .disconnected(text: GameStrings.joinGame)
             
         case .userConnected, .userJoined, .opponentDisconnected:
+            stopNextRoundTimer()
             gameState = .connectingToOpponent(text: GameStrings.waitingForOpponent)
             
         case .opponentJoined:
@@ -173,75 +174,70 @@ extension GameManager {
         
         socket?.on(SocketEvents.userJoined) { [weak self] data, _ in
             guard let data = data.first as? String else {
-                print("client => received event: \(SocketEvents.userJoined), failed to read user socket id")
+                print("client => received event: \(SocketEvents.userJoined), failed to read socket id")
                 return
             }
             if let socketId = self?.socket?.sid, socketId == data {
-                print("client => received event: \(SocketEvents.userJoined), socket id(self):\(data)")
+                print("client => received event: \(SocketEvents.userJoined), socket id(self): \(data)")
                 self?.socketState = .userJoined
             } else {
-                print("client => received event: \(SocketEvents.userJoined), socket id(other):\(data)")
+                print("client => received event: \(SocketEvents.userJoined), socket id(other): \(data)")
                 self?.socketState = .opponentJoined
             }
         }
         
         socket?.on(SocketEvents.gameStarted) { [weak self] data, _ in
-            guard let data = data.first as? String else {
-                print("client => received event: \(SocketEvents.gameStarted), failed to read namespace")
+            guard let data = data.first as? String, let namespace = self?.namespace, namespace == data else {
+                print("client => received event: \(SocketEvents.gameStarted), incorrect namespace received")
                 return
             }
-            
-            if let namespace = self?.namespace, namespace == data {
-                print("client => received event: \(SocketEvents.gameStarted), namespace(self):\(data)")
-                self?.socketState = .gameStarted
-            } else {
-                print("client => received event: \(SocketEvents.gameStarted), namespace(other):\(data)")
-                self?.socketState = .gameStarted
-            }
+
+            self?.socketState = .gameStarted
         }
         
         socket?.on(SocketEvents.userDisconnected) { [weak self] data, _ in
             guard let data = data.first as? String else {
-                print("client => received event: \(SocketEvents.userDisconnected), failed to read namespace")
+                print("client => received event: \(SocketEvents.userDisconnected), failed to read socket id")
                 return
             }
             
             if let socketId = self?.socket?.sid, socketId == data {
-                print("client => received event: \(SocketEvents.userDisconnected), socket id(self):\(data)")
+                print("client => received event: \(SocketEvents.userDisconnected), socket id(self): \(data)")
                 self?.namespace = nil
                 self?.socketState = .userDisconnected
             } else {
-                print("client => received event: \(SocketEvents.userDisconnected), socket id(other):\(data)")
+                print("client => received event: \(SocketEvents.userDisconnected), socket id(other): \(data)")
                 self?.socketState = .opponentDisconnected
             }
         }
         
         socket?.on(SocketEvents.userWon) { [weak self] data, _ in
             guard let data = data.first as? String else {
-                print("client => received event: \(SocketEvents.userWon), failed to read namespace")
+                print("client => received event: \(SocketEvents.userWon), failed to read socket id")
                 return
             }
             
             if let socketId = self?.socket?.sid, socketId == data {
-                print("client => received event: \(SocketEvents.userWon), socket id(self):\(data)")
                 // this user won, do nothing
+                print("client => received event: \(SocketEvents.userWon), socket id(self): \(data)")
             } else {
-                print("client => received event: \(SocketEvents.userWon), socket id(other):\(data)")
+                print("client => received event: \(SocketEvents.userWon), socket id(other): \(data)")
                 self?.socketState = .userLost
             }
         }
 
         socket?.on(SocketEvents.userSelection) { [weak self] data, _ in
-            guard let data = data.first as? [String: Any], let namespace = data["namespace"] else {
-                print("client => received event: \(SocketEvents.userWon), failed to read namespace")
+            guard let data = data.first as? [String: Any] else {
+                print("client => received event: \(SocketEvents.userWon), failed to read user selection")
                 return
             }
             
             if let socketId = self?.socket?.sid, socketId == data["socketId"] as? String {
-                print("client => received event: \(SocketEvents.userSelection), socket id(self):\(data)")
+                // this user's selection, do nothing
+                print("client => received event: \(SocketEvents.userSelection), socket id(self): \(data)")
             } else {
                 if let row = data["row"] as? Int, let col = data["col"] as? Int, let color = data["color"] as? String {
-                    print("client => received event: \(SocketEvents.userSelection), socket id(other):\(data)")
+                    print("client => received event: \(SocketEvents.userSelection), socket id(other): \(data["socketId"] as? String ?? "")")
                     self?.opponentColors[row][col] = UIColor(hexString: color) ?? .white
                 }
             }

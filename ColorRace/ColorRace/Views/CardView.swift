@@ -25,6 +25,7 @@ struct CardView: View {
 
 struct CardView_Previews: PreviewProvider {
     static var previews: some View {
-        CardView(cardDesign: CardDesign(layout: CardStore.standardCardLayout, renderer: .back(drawable: CardStore.standardCardBack)))
+        CardView(cardDesign: CardDesign(layout: CardStore.standardCardLayout,
+                                        renderer: .back(drawable: CardStore.standardCardBack)))
     }
 }

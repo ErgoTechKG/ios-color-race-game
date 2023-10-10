@@ -17,7 +17,6 @@ protocol CardProps {
 }
 
 protocol CardBackDrawable {
-    var text: String { get }
     var font: Font { get }
     var textColor: Color { get }
     var innerCornerRadius: CGFloat { get }
@@ -33,7 +32,6 @@ protocol CardFaceDrawable {
 }
 
 struct CardBack: CardBackDrawable {
-    var text: String
     var font: Font
     var textColor: Color
     var innerCornerRadius: CGFloat

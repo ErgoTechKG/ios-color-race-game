@@ -8,7 +8,6 @@
 import Foundation
 import SwiftUI
 
-// TODO: disconnect user on backgrounding the app
 struct GameView: View {
     @Environment(\.presentationMode) var presentation
     @Environment(\.scenePhase) var scenePhase
@@ -196,7 +195,9 @@ extension GameView {
     }
     
     @ViewBuilder private func boardRepresentableView() -> some View {
-        BoardViewRepresentable(userWon: $gameManager.userWon, userSelectedTile: $gameManager.userSelectedTile, boardColors: $gameManager.boardColors)
+        BoardViewRepresentable(userWon: $gameManager.userWon,
+                               userSelectedTile: $gameManager.userSelectedTile,
+                               boardColors: $gameManager.boardColors)
             .offset(y: showGameBoard ? 0 : UIScreen.main.bounds.size.height)
             .transition(.slide)
             .animation(.spring(dampingFraction: 0.6), value: showGameBoard)
