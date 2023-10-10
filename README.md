@@ -25,6 +25,7 @@ Screenshots
 ---
 Gameplay video
 ---
+https://youtu.be/mnZZQEpkvQE
 
 
 
