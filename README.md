@@ -1,5 +1,10 @@
 # ios-color-race-game
-iOS game based on the Color Race board game
+An iOS game based on the Color Race board game. Color Race is a 2 player game where users pick cards with random color patterns & then place colored tokens on a 3x3 board to match a pattern. The first one to complete the pattern wins the round!
+
+<img width="100" src="https://github.com/anupdsouza/ios-color-race-game/assets/103429618/80e9b785-d22c-434a-a1c9-766b4d3ba026">
+<img width="100" src="https://github.com/anupdsouza/ios-color-race-game/assets/103429618/e46f0849-2633-4507-807a-be7bda0ebe2e">
+<img width="100" src="https://github.com/anupdsouza/ios-color-race-game/assets/103429618/a7487039-9c1c-4674-bcd9-7d7158e30bd0">
+<img width="100" src="https://github.com/anupdsouza/ios-color-race-game/assets/103429618/d9aafac4-036c-479e-8f42-d336317aa68a">
 
 Steps:
 * Install [Node.js](https://nodejs.org/en/download)
