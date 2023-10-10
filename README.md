@@ -1,11 +1,25 @@
 # ios-color-race-game
-An iOS game based on the Color Race board game. Color Race is a 2 player game where users pick cards with random color patterns & then place colored tokens on a 3x3 board to match a pattern. The first one to complete the pattern wins the round!
+An iOS game based on the **Color Race** board game. Color Race is a 2 player game where users pick cards with random color patterns & then place colored tokens on a 3x3 board to match the pattern. The first one to complete the pattern wins the round!
 
 <img width="100" src="https://github.com/anupdsouza/ios-color-race-game/assets/103429618/80e9b785-d22c-434a-a1c9-766b4d3ba026">
 <img width="100" src="https://github.com/anupdsouza/ios-color-race-game/assets/103429618/e46f0849-2633-4507-807a-be7bda0ebe2e">
 <img width="100" src="https://github.com/anupdsouza/ios-color-race-game/assets/103429618/a7487039-9c1c-4674-bcd9-7d7158e30bd0">
 <img width="100" src="https://github.com/anupdsouza/ios-color-race-game/assets/103429618/d9aafac4-036c-479e-8f42-d336317aa68a">
 
+---
+iOS Gameplay
+---
+* In this version, when you launch the app it'll attempt to connect you to a local socket server.
+* On connecting to the server the app will then wait for another user to connect to the server.
+* When another user connects, both you and the other user are matched and a random color pattern is assigned to each.
+* You sequentially tap each tile in a 3x3 grid in order to switch colors until you match the pattern you were assigned.
+* The round ends when either player correctly matches the assigned pattern and the next round loads after 3 seconds.
+* While in game, you can see the other users inputs in real time in the HUD.
+* In case a user drops or backs out from the game and another user joins, you will be automatically matched with them.
+
+---
+Getting started
+---
 Steps:
 * Install [Node.js](https://nodejs.org/en/download)
 * cd to the **Server** directory in Terminal and run `npm install` to install the dependencies viz. express & socket.io
@@ -35,6 +49,7 @@ https://youtu.be/mnZZQEpkvQE
 ---
 TODO
 ---
-- [ ] Detect socket server disconnection/kill.
+- [ ] Detect socket server disconnection/kill
+- [ ] Tidy server side code
 
 
