@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct GameStrings {
+enum GameStrings {
     static let title = "Color Race"
     static let enter = "Enter"
     static let joinGame = "Join a game"

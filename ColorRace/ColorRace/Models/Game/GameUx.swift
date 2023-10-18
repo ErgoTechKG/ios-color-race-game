@@ -8,14 +8,14 @@
 import Foundation
 import SwiftUI
 
-struct GameFontConfig {
+enum GameFontConfig {
     static let font: String = "Handlee"
     static let titleFontSize: CGFloat = 50
     static let subtitleFontSize: CGFloat = 20
     static let buttonFontSize: CGFloat = 20
 }
 
-struct GameUx {
+enum GameUx {
     
     static func fontWithSize(_ size: CGFloat) -> Font {
         Font.custom(GameFontConfig.font, size: size)

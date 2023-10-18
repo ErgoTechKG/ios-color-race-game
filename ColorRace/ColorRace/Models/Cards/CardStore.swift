@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 import SwiftUI
 
-struct CardStore {
+enum CardStore {
     static let mediumCardLayout = CardLayout(width: 90, height: 155, color: .white, cornerRadius: 10, borderWidth: 1, borderColor: .black)
     static let standardCardLayout = CardLayout(width: 200, height: 330, color: .white, cornerRadius: 15, borderWidth: 2, borderColor: .black)
     
