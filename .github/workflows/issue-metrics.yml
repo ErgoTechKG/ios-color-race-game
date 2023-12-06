@@ -15,25 +15,34 @@ jobs:
       shell: bash
       run: |
         # Calculate the first day of the previous month
-        first_day=$(date -d "last month" +%Y-%m-01)
+        #first_day=$(date -d "last month" +%Y-%m-01)
 
         # Calculate the last day of the previous month
-        last_day=$(date -d "$first_day +1 month -1 day" +%Y-%m-%d)
+        #last_day=$(date -d "$first_day +1 month -1 day" +%Y-%m-%d)
 
         #Set an environment variable with the date range
-        echo "$first_day..$last_day"
-        echo "last_month=$first_day..$last_day" >> "$GITHUB_ENV"
+        #echo "$first_day..$last_day"
+        #echo "last_month=$first_day..$last_day" >> "$GITHUB_ENV"
+        ##########################################################
+        # Get the current date
+        current_date=$(date +'%Y-%m-%d')
+
+        # Calculate the previous week
+        previous_date=$(date -d "$current_date -1 week" +'%Y-%m-%d')
+        
+        echo "$previous_date..$current_date"
+        echo "prev_week=$previous_date..$current_date" >> "$GITHUB_ENV"
 
     - name: Run issue-metrics tool for opened issues last month
       uses: github/issue-metrics@v2
       env:
         GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        SEARCH_QUERY: 'repo:anupdsouza/ios-color-race-game is:issue created:${{ env.last_month }}'
+        SEARCH_QUERY: 'repo:anupdsouza/ios-color-race-game is:issue created:${{ env.prev_week }}'
 
     - name: Create issue for opened issues
       uses: peter-evans/create-issue-from-file@v4
       with:
-        title: ${{ env.last_month }} opened issues
+        title: ${{ env.prev_week }} opened issues
         token: ${{ secrets.GITHUB_TOKEN }}
         content-filepath: ./issue_metrics.md
         assignees: anupdsouza
@@ -44,12 +53,12 @@ jobs:
       uses: github/issue-metrics@v2
       env:
         GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        SEARCH_QUERY: 'repo:anupdsouza/ios-color-race-game is:issue closed:${{ env.last_month }}'
+        SEARCH_QUERY: 'repo:anupdsouza/ios-color-race-game is:issue closed:${{ env.prev_week }}'
 
     - name: Create issue for closed issues
       uses: peter-evans/create-issue-from-file@v4
       with:
-        title: ${{ env.last_month }} closed issues
+        title: ${{ env.prev_week }} closed issues
         content-filepath: ./issue_metrics.md
         assignees: anupdsouza
         labels: |
@@ -59,12 +68,12 @@ jobs:
       uses: github/issue-metrics@v2
       env:
         GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        SEARCH_QUERY: 'repo:anupdsouza/ios-color-race-game is:pr created:${{ env.last_month }}'
+        SEARCH_QUERY: 'repo:anupdsouza/ios-color-race-game is:pr created:${{ env.prev_week }}'
 
     - name: Create issue for opened prs
       uses: peter-evans/create-issue-from-file@v4
       with:
-        title: ${{ env.last_month }} opened prs
+        title: ${{ env.prev_week }} opened prs
         token: ${{ secrets.GITHUB_TOKEN }}
         content-filepath: ./issue_metrics.md
         assignees: anupdsouza
@@ -75,12 +84,12 @@ jobs:
       uses: github/issue-metrics@v2
       env:
         GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        SEARCH_QUERY: 'repo:anupdsouza/ios-color-race-game is:pr closed:${{ env.last_month }}'
+        SEARCH_QUERY: 'repo:anupdsouza/ios-color-race-game is:pr closed:${{ env.prev_week }}'
 
     - name: Create issue for closed prs last month
       uses: peter-evans/create-issue-from-file@v4
       with:
-        title: ${{ env.last_month }} closed prs
+        title: ${{ env.prev_week }} closed prs
         content-filepath: ./issue_metrics.md
         assignees: anupdsouza
         labels: |
