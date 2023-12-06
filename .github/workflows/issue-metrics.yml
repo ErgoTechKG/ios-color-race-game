@@ -14,15 +14,9 @@ jobs:
     - name: Get dates for last month
       shell: bash
       run: |
-        # Calculate the first day of the previous month
-        #first_day=$(date -d "last month" +%Y-%m-01)
 
-        # Calculate the last day of the previous month
-        #last_day=$(date -d "$first_day +1 month -1 day" +%Y-%m-%d)
-
-        #Set an environment variable with the date range
-        #echo "$first_day..$last_day"
-        #echo "last_month=$first_day..$last_day" >> "$GITHUB_ENV"
+        ##########################################################
+        Create report for the previous week
         ##########################################################
         # Get the current date
         current_date=$(date +'%Y-%m-%d')
@@ -32,6 +26,20 @@ jobs:
         
         echo "$previous_date..$current_date"
         echo "prev_week=$previous_date..$current_date" >> "$GITHUB_ENV"
+        
+        ##########################################################
+        Create report for the previous month
+        ##########################################################
+        
+        # Calculate the first day of the previous month
+        #first_day=$(date -d "last month" +%Y-%m-01)
+
+        # Calculate the last day of the previous month
+        #last_day=$(date -d "$first_day +1 month -1 day" +%Y-%m-%d)
+
+        #Set an environment variable with the date range
+        #echo "$first_day..$last_day"
+        #echo "last_month=$first_day..$last_day" >> "$GITHUB_ENV"
 
     - name: Run issue-metrics tool for opened issues last month
       uses: github/issue-metrics@v2
