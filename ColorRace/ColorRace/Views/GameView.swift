@@ -198,7 +198,7 @@ extension GameView {
         BoardViewRepresentable(userWon: $gameManager.userWon,
                                userSelectedTile: $gameManager.userSelectedTile,
                                boardColors: $gameManager.boardColors)
-            .offset(y: showGameBoard ? 0 : UIScreen.main.bounds.size.height)
+//            .offset(y: showGameBoard ? 0 : UIScreen.main.bounds.size.height)
             .transition(.slide)
             .animation(.spring(dampingFraction: 0.6), value: showGameBoard)
             .clipped()

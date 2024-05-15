@@ -7,11 +7,11 @@
 
 import SwiftUI
 
-@main
-struct ColorRaceApp: App {
-    var body: some Scene {
-        WindowGroup {
-            ContentView()
-        }
-    }
-}
+//@main
+//struct ColorRaceApp: App {
+//    var body: some Scene {
+//        WindowGåroup {
+//            ContentView()
+//        }
+//    }
+//}

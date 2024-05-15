@@ -7,6 +7,40 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		077A22042BF4F49E0034A355 /* RealityKitContent in Frameworks */ = {isa = PBXBuildFile; productRef = 077A22032BF4F49E0034A355 /* RealityKitContent */; };
+		077A22062BF4F49E0034A355 /* ColorRaceVisionTargetApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 077A22052BF4F49E0034A355 /* ColorRaceVisionTargetApp.swift */; };
+		077A220A2BF4F49E0034A355 /* ImmersiveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 077A22092BF4F49E0034A355 /* ImmersiveView.swift */; };
+		077A220C2BF4F49F0034A355 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 077A220B2BF4F49F0034A355 /* Assets.xcassets */; };
+		077A220F2BF4F49F0034A355 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 077A220E2BF4F49F0034A355 /* Preview Assets.xcassets */; };
+		077A22142BF4F6400034A355 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4AD996C2A8C8A9800909E38 /* ContentView.swift */; };
+		077A22152BF4F6460034A355 /* ColorRaceApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4AD996A2A8C8A9800909E38 /* ColorRaceApp.swift */; };
+		077A22162BF4F64C0034A355 /* CardFlipAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E48548C02AA2EFC6009803AD /* CardFlipAnimator.swift */; };
+		077A22172BF4F64F0034A355 /* UIColor+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = E48ED2392AA728AE00070908 /* UIColor+Hex.swift */; };
+		077A22182BF4F6560034A355 /* SocketEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = E497A6572A9DBC1700C58FA4 /* SocketEvents.swift */; };
+		077A22192BF4F6560034A355 /* SocketState.swift in Sources */ = {isa = PBXBuildFile; fileRef = E49DC3CD2AA5F3FD007EC847 /* SocketState.swift */; };
+		077A221A2BF4F65E0034A355 /* GameUx.swift in Sources */ = {isa = PBXBuildFile; fileRef = E497A65B2A9DD04A00C58FA4 /* GameUx.swift */; };
+		077A221B2BF4F65E0034A355 /* GameColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4FAF20C2AB31A3C00F67CB7 /* GameColors.swift */; };
+		077A221C2BF4F65E0034A355 /* GameState.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4AD1B392A93610000ACF69B /* GameState.swift */; };
+		077A221D2BF4F65E0034A355 /* GameManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E497A5F92A9DA11F00C58FA4 /* GameManager.swift */; };
+		077A221E2BF4F65E0034A355 /* GameStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4AD1B612A9388AE00ACF69B /* GameStrings.swift */; };
+		077A221F2BF4F6620034A355 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = E466B6982A91C0B70023FFC4 /* Card.swift */; };
+		077A22202BF4F6620034A355 /* CardStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = E45E40822A9F0F1D00EFDBC7 /* CardStore.swift */; };
+		077A22212BF4F6650034A355 /* TileSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D98EFC2AC1272F00A67765 /* TileSelection.swift */; };
+		077A22222BF4F66A0034A355 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44729832A9103FB00883867 /* CardView.swift */; };
+		077A22232BF4F66A0034A355 /* StartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4FE5F942A91DFD100A860DC /* StartView.swift */; };
+		077A22242BF4F66A0034A355 /* CardFaceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4AD1B652A93937900ACF69B /* CardFaceView.swift */; };
+		077A22252BF4F66A0034A355 /* CardLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44729852A91049800883867 /* CardLoadingView.swift */; };
+		077A22262BF4F66A0034A355 /* CardBackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4AD1B632A93934500ACF69B /* CardBackView.swift */; };
+		077A22272BF4F66A0034A355 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E497A6592A9DCF7500C58FA4 /* GameView.swift */; };
+		077A22282BF4F66A0034A355 /* BoardTileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4EB237B2A9B42F10014F1C9 /* BoardTileView.swift */; };
+		077A22292BF4F66A0034A355 /* BoardViewRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4EB23752A9B20F50014F1C9 /* BoardViewRepresentable.swift */; };
+		077A222A2BF4F66A0034A355 /* BoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4EB23792A9B41000014F1C9 /* BoardView.swift */; };
+		077A222B2BF4F66A0034A355 /* DiamondPatternView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4379F752AB04D6F00276BAE /* DiamondPatternView.swift */; };
+		077A222C2BF4F66A0034A355 /* ColorGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E46639822A946DB200532E7B /* ColorGridView.swift */; };
+		077A222D2BF4F66A0034A355 /* LottieViewRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E48640732AB45F880081A39B /* LottieViewRepresentable.swift */; };
+		077A222E2BF4F66A0034A355 /* BackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E47272D82AB2B81F005FBA25 /* BackgroundView.swift */; };
+		077A22312BF4F6A60034A355 /* SocketIO in Frameworks */ = {isa = PBXBuildFile; productRef = 077A22302BF4F6A60034A355 /* SocketIO */; };
+		077A22332BF4F6AC0034A355 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 077A22322BF4F6AC0034A355 /* Lottie */; };
 		E41048132A8E286F0093F5BA /* SocketIO in Frameworks */ = {isa = PBXBuildFile; productRef = E41048122A8E286F0093F5BA /* SocketIO */; };
 		E43477FA2A9CC4CC00054C0C /* Handlee-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E43477F82A9CC4CB00054C0C /* Handlee-Regular.ttf */; };
 		E43477FB2A9CC4CC00054C0C /* OFL.txt in Resources */ = {isa = PBXBuildFile; fileRef = E43477F92A9CC4CB00054C0C /* OFL.txt */; };
@@ -44,6 +78,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		077A21FF2BF4F49E0034A355 /* ColorRaceVisionTarget.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ColorRaceVisionTarget.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		077A22022BF4F49E0034A355 /* RealityKitContent */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = RealityKitContent; sourceTree = "<group>"; };
+		077A22052BF4F49E0034A355 /* ColorRaceVisionTargetApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorRaceVisionTargetApp.swift; sourceTree = "<group>"; };
+		077A22092BF4F49E0034A355 /* ImmersiveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImmersiveView.swift; sourceTree = "<group>"; };
+		077A220B2BF4F49F0034A355 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		077A220E2BF4F49F0034A355 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		077A22102BF4F49F0034A355 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E43477F82A9CC4CB00054C0C /* Handlee-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Handlee-Regular.ttf"; sourceTree = "<group>"; };
 		E43477F92A9CC4CB00054C0C /* OFL.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = OFL.txt; sourceTree = "<group>"; };
 		E43477FC2A9CC4ED00054C0C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -81,6 +122,16 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		077A21FC2BF4F49E0034A355 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				077A22042BF4F49E0034A355 /* RealityKitContent in Frameworks */,
+				077A22312BF4F6A60034A355 /* SocketIO in Frameworks */,
+				077A22332BF4F6AC0034A355 /* Lottie in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E4AD99642A8C8A9800909E38 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -93,6 +144,41 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		077A22002BF4F49E0034A355 /* ColorRaceVisionTarget */ = {
+			isa = PBXGroup;
+			children = (
+				077A22052BF4F49E0034A355 /* ColorRaceVisionTargetApp.swift */,
+				077A22092BF4F49E0034A355 /* ImmersiveView.swift */,
+				077A220B2BF4F49F0034A355 /* Assets.xcassets */,
+				077A22102BF4F49F0034A355 /* Info.plist */,
+				077A220D2BF4F49F0034A355 /* Preview Content */,
+			);
+			path = ColorRaceVisionTarget;
+			sourceTree = "<group>";
+		};
+		077A22012BF4F49E0034A355 /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+				077A22022BF4F49E0034A355 /* RealityKitContent */,
+			);
+			path = Packages;
+			sourceTree = "<group>";
+		};
+		077A220D2BF4F49F0034A355 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				077A220E2BF4F49F0034A355 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		077A222F2BF4F6A60034A355 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		E43477F72A9CC4CB00054C0C /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
@@ -221,7 +307,10 @@
 				E48ED2362AA70EB700070908 /* Preview Content */,
 				E4AD99692A8C8A9800909E38 /* ColorRace */,
 				E48ED22A2AA7066000070908 /* Resources */,
+				077A22002BF4F49E0034A355 /* ColorRaceVisionTarget */,
+				077A22012BF4F49E0034A355 /* Packages */,
 				E4AD99682A8C8A9800909E38 /* Products */,
+				077A222F2BF4F6A60034A355 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -229,6 +318,7 @@
 			isa = PBXGroup;
 			children = (
 				E4AD99672A8C8A9800909E38 /* ColorRace.app */,
+				077A21FF2BF4F49E0034A355 /* ColorRaceVisionTarget.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -257,6 +347,28 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		077A21FE2BF4F49E0034A355 /* ColorRaceVisionTarget */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 077A22112BF4F49F0034A355 /* Build configuration list for PBXNativeTarget "ColorRaceVisionTarget" */;
+			buildPhases = (
+				077A21FB2BF4F49E0034A355 /* Sources */,
+				077A21FC2BF4F49E0034A355 /* Frameworks */,
+				077A21FD2BF4F49E0034A355 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ColorRaceVisionTarget;
+			packageProductDependencies = (
+				077A22032BF4F49E0034A355 /* RealityKitContent */,
+				077A22302BF4F6A60034A355 /* SocketIO */,
+				077A22322BF4F6AC0034A355 /* Lottie */,
+			);
+			productName = ColorRaceVisionTarget;
+			productReference = 077A21FF2BF4F49E0034A355 /* ColorRaceVisionTarget.app */;
+			productType = "com.apple.product-type.application";
+		};
 		E4AD99662A8C8A9800909E38 /* ColorRace */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = E4AD99752A8C8A9F00909E38 /* Build configuration list for PBXNativeTarget "ColorRace" */;
@@ -285,9 +397,12 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1420;
+				LastSwiftUpdateCheck = 1520;
 				LastUpgradeCheck = 1420;
 				TargetAttributes = {
+					077A21FE2BF4F49E0034A355 = {
+						CreatedOnToolsVersion = 15.2;
+					};
 					E4AD99662A8C8A9800909E38 = {
 						CreatedOnToolsVersion = 14.2;
 					};
@@ -311,11 +426,21 @@
 			projectRoot = "";
 			targets = (
 				E4AD99662A8C8A9800909E38 /* ColorRace */,
+				077A21FE2BF4F49E0034A355 /* ColorRaceVisionTarget */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		077A21FD2BF4F49E0034A355 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				077A220F2BF4F49F0034A355 /* Preview Assets.xcassets in Resources */,
+				077A220C2BF4F49F0034A355 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E4AD99652A8C8A9800909E38 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -331,6 +456,42 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		077A21FB2BF4F49E0034A355 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				077A22152BF4F6460034A355 /* ColorRaceApp.swift in Sources */,
+				077A221E2BF4F65E0034A355 /* GameStrings.swift in Sources */,
+				077A22242BF4F66A0034A355 /* CardFaceView.swift in Sources */,
+				077A22212BF4F6650034A355 /* TileSelection.swift in Sources */,
+				077A222D2BF4F66A0034A355 /* LottieViewRepresentable.swift in Sources */,
+				077A221D2BF4F65E0034A355 /* GameManager.swift in Sources */,
+				077A22062BF4F49E0034A355 /* ColorRaceVisionTargetApp.swift in Sources */,
+				077A220A2BF4F49E0034A355 /* ImmersiveView.swift in Sources */,
+				077A222A2BF4F66A0034A355 /* BoardView.swift in Sources */,
+				077A222E2BF4F66A0034A355 /* BackgroundView.swift in Sources */,
+				077A22182BF4F6560034A355 /* SocketEvents.swift in Sources */,
+				077A22202BF4F6620034A355 /* CardStore.swift in Sources */,
+				077A22172BF4F64F0034A355 /* UIColor+Hex.swift in Sources */,
+				077A22232BF4F66A0034A355 /* StartView.swift in Sources */,
+				077A22262BF4F66A0034A355 /* CardBackView.swift in Sources */,
+				077A22142BF4F6400034A355 /* ContentView.swift in Sources */,
+				077A22192BF4F6560034A355 /* SocketState.swift in Sources */,
+				077A22292BF4F66A0034A355 /* BoardViewRepresentable.swift in Sources */,
+				077A222B2BF4F66A0034A355 /* DiamondPatternView.swift in Sources */,
+				077A221F2BF4F6620034A355 /* Card.swift in Sources */,
+				077A221A2BF4F65E0034A355 /* GameUx.swift in Sources */,
+				077A222C2BF4F66A0034A355 /* ColorGridView.swift in Sources */,
+				077A22272BF4F66A0034A355 /* GameView.swift in Sources */,
+				077A22162BF4F64C0034A355 /* CardFlipAnimator.swift in Sources */,
+				077A221B2BF4F65E0034A355 /* GameColors.swift in Sources */,
+				077A22222BF4F66A0034A355 /* CardView.swift in Sources */,
+				077A221C2BF4F65E0034A355 /* GameState.swift in Sources */,
+				077A22252BF4F66A0034A355 /* CardLoadingView.swift in Sources */,
+				077A22282BF4F66A0034A355 /* BoardTileView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E4AD99632A8C8A9800909E38 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -368,6 +529,71 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
+		077A22122BF4F49F0034A355 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"ColorRaceVisionTarget/Preview Content\"";
+				DEVELOPMENT_TEAM = DAW97TA9XR;
+				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "$(TARGET_NAME)/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ergotech.ColorRaceVisionTarget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = xros;
+				SUPPORTED_PLATFORMS = "xros xrsimulator";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,7";
+				XROS_DEPLOYMENT_TARGET = 1.0;
+			};
+			name = Debug;
+		};
+		077A22132BF4F49F0034A355 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"ColorRaceVisionTarget/Preview Content\"";
+				DEVELOPMENT_TEAM = DAW97TA9XR;
+				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "$(TARGET_NAME)/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ergotech.ColorRaceVisionTarget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = xros;
+				SUPPORTED_PLATFORMS = "xros xrsimulator";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,7";
+				XROS_DEPLOYMENT_TARGET = 1.0;
+			};
+			name = Release;
+		};
 		E4AD99732A8C8A9F00909E38 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -543,6 +769,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		077A22112BF4F49F0034A355 /* Build configuration list for PBXNativeTarget "ColorRaceVisionTarget" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				077A22122BF4F49F0034A355 /* Debug */,
+				077A22132BF4F49F0034A355 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		E4AD99622A8C8A9800909E38 /* Build configuration list for PBXProject "ColorRace" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -583,6 +818,20 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		077A22032BF4F49E0034A355 /* RealityKitContent */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = RealityKitContent;
+		};
+		077A22302BF4F6A60034A355 /* SocketIO */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E41048112A8E286F0093F5BA /* XCRemoteSwiftPackageReference "socket.io-client-swift" */;
+			productName = SocketIO;
+		};
+		077A22322BF4F6AC0034A355 /* Lottie */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E48640702AB45F4C0081A39B /* XCRemoteSwiftPackageReference "lottie-ios" */;
+			productName = Lottie;
+		};
 		E41048122A8E286F0093F5BA /* SocketIO */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = E41048112A8E286F0093F5BA /* XCRemoteSwiftPackageReference "socket.io-client-swift" */;
